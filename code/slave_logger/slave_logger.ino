@@ -1,8 +1,14 @@
+#include <DHT.h>
+
 // /dev/tty.usbmodem5d11 skynet-01.dat
 // /dev/tty.usbmodem3a21 skynet-02.dat
 
+this . is . broken
+
 int pinRead = 0;
 int pinLED = 13;
+
+
 
 void setup()
 {

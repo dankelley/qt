@@ -3,17 +3,17 @@
 <plist version="1.0">
     <dict>
         <key>Label</key>
-        <string>org.skyview.controller</string>
+        <string>org.qt.controller</string>
         <key>EnvironmentVariables</key>
 	<dict>
 		<key>PYTHONPATH</key>
-		<string>/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages</string>
+		<string>/usr/bin/python</string>
 	</dict>
         <key>ProgramArguments</key>
         <array>
             <string>python</string>
             <string>-v</string>
-            <string>/Users/kelley/school-sky-light/LaunchDaemons/skyview_controller.py</string>
+            <string>/Users/kelley/qt/LaunchDaemons/qt_controller.py</string>
             <string>0</string>
             <string>10</string>
             <string>60</string>

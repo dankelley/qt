@@ -3,19 +3,12 @@ import socket
 import serial
 from time import sleep, time
 from string import atoi
-import skyview_secret
 DEBUG = False 
 # FIXME: database work
 if 5 != len(sys.argv):
     print "Usage examples:"
-    print "  python " + sys.argv[0] +  " 0 10 60 /dev/tty.usbmodem5d11   # dal 1"
-    print "  python " + sys.argv[0] +  " 1 10 60 /dev/tty.usbmodem411    # home 1"
-    print "  python " + sys.argv[0] +  " 1 10 60 /dev/tty.usbmodemfa2131 # test home1 from dal"
-    print "(meaning: station secret-index code, sample every 10s, avg/report every 60s, sensor on named /dev)"
-    exit(2)
-secret_station_id = atoi(sys.argv[1])
-if (secret_station_id >= len(skyview_secret.station_id)):
-    print "no such station"
+    print "  python " + sys.argv[0] +  " 1 10 60 /dev/tty.usbmodem1421   # home"
+    print "i.e. station_code=1, sample_delta_t=10, sample_average_interval=60, device=/dev/tty.usbmodem1421"
     exit(2)
 this_station_id = skyview_secret.station_id[secret_station_id]
 this_station_code = skyview_secret.station_code[secret_station_id]

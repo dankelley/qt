@@ -29,6 +29,7 @@ This fails to run until we go into the menus to set the com port.
 
 Then it just fails to acquire data.
 
+HOME: /dev/cu.usbmodem1421
 
 # References
 

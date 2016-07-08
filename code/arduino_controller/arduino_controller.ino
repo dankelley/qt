@@ -1,3 +1,6 @@
+// to test in controller, do e.g.:
+//    cat  /dev/cu.usbmodem1421
+// and it should output temperature and rel humidity repeatedly
 #include <DHT.h>
 
 #include <Adafruit_Sensor.h>
@@ -27,9 +30,10 @@ void setup() {
 }
 
 void loop() {
+    int SAMPLES = 10; // do some averaging and slow things down a bit
     int nt = 0, nq = 0;
     float t = 0.0, q = 0.0;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < SAMPLES; i++) {
         digitalWrite(pinLED, HIGH);
         delay(delayMS);
         digitalWrite(pinLED, LOW);

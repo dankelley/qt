@@ -3,7 +3,7 @@ library(RSQLite)
 m <- dbDriver("SQLite")
 con <- dbConnect(m, dbname="qt.db")
 dbListTables(con)
-observations <- dbGetQuery(con, "select time,q,t from observations")
+observations <- dbGetQuery(con, "select station_code, time,q,t from observations")
 time <- numberAsPOSIXct(observations$time) # timezone?
 q <- observations$q
 t <- observations$t

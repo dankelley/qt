@@ -12,7 +12,7 @@ DEBUG = True
 # FIXME: database work
 if 4 != len(sys.argv):
     print "Need 4 arguments; usage examples:"
-    print "  python " + sys.argv[0] +  " 1 6 /dev/tty.usbmodem1421   # home"
+    print "  python " + sys.argv[0] +  " 1 10 /dev/tty.usbmodem1421   # home"
     print "i.e. station_code=1, aggregate=10, device=/dev/tty.usbmodem1421"
     exit(2)
 station_code = atoi(sys.argv[1])

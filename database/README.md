@@ -30,7 +30,7 @@ to create a database named `qt.db` in the present directory.
 
 2. To see what's in the database, type
 
-    echo '.dump' | sqlite3 qt.db 
+        echo '.dump' | sqlite3 qt.db 
 
 
 

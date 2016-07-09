@@ -2,7 +2,9 @@ library(oce)
 library(RSQLite)
 m <- dbDriver("SQLite")
 con <- dbConnect(m, dbname="/Users/kelley/qt/database/qt.db")
-observations <- dbGetQuery(con, "select time,t,q from observations")
+stations <- dbGetQuery(con, "select * from stations")
+observations <- dbGetQuery(con, "select time,station_code,t,q from observations")
+station <- subset(stations, station_code==observations$station_code[1])$station_name
 ## FIXME: check timezone
 time <- numberAsPOSIXct(observations$time) - 3 * 3600
 
@@ -38,6 +40,7 @@ for (ring in seq(-20, 30, 10)) {
 lines(c(0, 0), c(-50, 50), col=gridcol)
 lines(c(-50, 50), c(0, 0), col=gridcol)
 #for (ring in pretty(c(t20, 0))) {
+mtext("Temperature", side=3, line=0, cex=cex, adj=0, font=2)
 mtext(expression("10"*degree*C*" contours,"), side=3, line=-1, cex=cex, adj=0)
 mtext(expression("20"*degree*"C bold"), side=3, line=-1.75, cex=cex, adj=0)
 p <- 55
@@ -58,6 +61,7 @@ for (ring in seq(0, 100, 20)) {
 }
 lines(c(0, 0), c(-100, 100), col=gridcol)
 lines(c(-100, 100), c(0, 0), col=gridcol)
+mtext("Relative Humidity", side=3, line=0, cex=cex, adj=1, font=2)
 mtext("20% contours,", side=3, line=-1, adj=1, cex=cex)
 mtext("60% bold", side=3, line=-1.75, adj=1, cex=cex)
 p <- 110
@@ -66,5 +70,11 @@ text(p, 0, "6h", cex=cex)
 text(0, -p, "12h", cex=cex)
 text(-p, 0, "18h", cex=cex)
 
-if (!interactive()) dev.off()
 
+## Overall title. There is a better way to do this but I cannot recall it.
+par(new=TRUE)
+par(mfrow=c(1,1))
+par(usr=c(0,1,0,1))
+text(0.5, 1, station, font=2, cex=1.1)
+
+if (!interactive()) dev.off()

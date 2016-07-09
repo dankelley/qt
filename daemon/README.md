@@ -65,3 +65,8 @@ You may use
 
 to find any problems with the running of the daemon.
 
+**Developer notes**
+
+1. I'm not sure how to handle `KeepAlive`.
+2. What to do when we cannot connect to USB? Right now, it will keep retrying, if `KeepAlive` is true, 
+so I removed that.

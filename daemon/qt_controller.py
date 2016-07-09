@@ -38,16 +38,25 @@ def meanstd(x):
     std = sqrt(std / float(n-1))
     return mean, std
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+try:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+except:
+    print 'Failed to create socket; error code: ' + str(msg[0]) + ' , error message: ' + msg[1]
+    sys.exit()
 baud = 9600
-ser = serial.Serial(usb, baud)
+try:
+    ser = serial.Serial(usb, baud)
+except:
+    print 'Failed to gain serial connection; error code: ' + str(msg[0]) + ' , error message: ' + msg[1]
+    sys.exit()
+
 sleep(1.0) # no need for a high data rate
 first_newline = True
 t = []
 q = []
 cbuf = ""
 while (True):
-    sleep(1.0) # perhaps this is good for avoiding overtalking?
+    sleep(10) # no need to check often
     c = ser.read(1)
     if len(c) > 0:
         # Accumlate 'c' into 'cbuf', and process at end of line

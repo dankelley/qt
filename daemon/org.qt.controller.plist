@@ -18,7 +18,6 @@
             <string>10</string>
             <string>/dev/cu.usbmodem1421</string>
         </array>
-        <key>KeepAlive</key>
         <true/>
     </dict>
 </plist>

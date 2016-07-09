@@ -6,7 +6,7 @@ stations <- dbGetQuery(con, "select * from stations")
 observations <- dbGetQuery(con, "select time,station_code,t,q from observations")
 station <- subset(stations, station_code==observations$station_code[1])$station_name
 ## FIXME: check timezone
-time <- numberAsPOSIXct(observations$time) - 3 * 3600
+time <- numberAsPOSIXct(observations$time) - 2 * 3600
 
 t <- observations$t
 q <- observations$q

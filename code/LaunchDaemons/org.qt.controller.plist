@@ -5,19 +5,19 @@
         <key>Label</key>
         <string>org.qt.controller</string>
         <key>EnvironmentVariables</key>
-	<dict>
-		<key>PYTHONPATH</key>
-		<string>/usr/bin/python</string>
-	</dict>
+        <dict>
+            <key>PYTHONPATH</key>
+            <string>/usr/bin/python</string>
+        </dict>
         <key>ProgramArguments</key>
         <array>
             <string>python</string>
             <string>-v</string>
-            <string>/Users/kelley/qt/LaunchDaemons/qt_controller.py</string>
-            <string>0</string>
+            <string>/Users/kelley/qt/code/LaunchDaemons/qt_controller.py</string>
+            <string>1</string>
             <string>10</string>
             <string>60</string>
-            <string>/dev/tty.usbmodem5d11</string>
+            <string>/dev/cu.usbmodem1421</string>
         </array>
         <key>KeepAlive</key>
         <true/>

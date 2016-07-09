@@ -13,7 +13,7 @@
         <array>
             <string>python</string>
             <string>-v</string>
-            <string>/Users/kelley/qt/code/LaunchDaemons/qt_controller.py</string>
+            <string>/Users/kelley/qt/daemon/qt_controller.py</string>
             <string>1</string>
             <string>10</string>
             <string>/dev/cu.usbmodem1421</string>

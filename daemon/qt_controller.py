@@ -63,7 +63,8 @@ while (True):
                     if len(t) == aggregate:
                         t_mean, t_stdev = meanstd(t)
                         q_mean, q_stdev = meanstd(q)
-                        sec = int(round(time()))
+                        #sec = int(round(time()))
+                        sec = int(round((datetime.datetime.utcnow()-datetime.datetime(1970,1,1)).total_seconds()))
                         msg = "%d %d %.2f %.2f %.2f %.2f" % (
                                 station_code, sec, t_mean, t_stdev, q_mean, q_stdev)
                         if DEBUG:

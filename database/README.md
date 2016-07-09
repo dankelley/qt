@@ -33,3 +33,4 @@ to create a database named `qt.db` in the present directory.
     echo '.dump' | sqlite3 qt.db 
 
 
+

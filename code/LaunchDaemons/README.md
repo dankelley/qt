@@ -1,20 +1,35 @@
-**Instructions.**
+**Initial setup (OSX)**
 
-Put these files into /Library/LaunchDaemons and then execute
+In a terminal, execute
 
-    launchctl load org.skyview.controller.plist 
-    launchctl load org.skyview.aggregator.plist 
+    sudo cp org.qt.controller.plist /Library/LaunchDaemons
+    sudo cp qt_controller.py /Library/LaunchDaemons
 
-or reboot the machine.
+to store some code as a launch daemon. Then do
 
-Problems with Lion:
+    sudo launchctl load /Library/LaunchDaemons/org.qt.controller.plist 
 
-tail -f /private/var/log/system.log
+(or reboot the machine) to set the code up to work. After this, no action will
+be required.
 
-Aug 17 10:21:11 emit org.skyview.controller[4493]: Traceback (most recent call last):
-Aug 17 10:21:11 emit org.skyview.controller[4493]:   File "/Users/kelley/school-sky-light/LaunchDaemons/skyview_controller.py", line 2, in <module>
-Aug 17 10:21:11 emit org.skyview.controller[4493]:     import serial
-Aug 17 10:21:11 emit org.skyview.controller[4493]: ImportError: No module named serial
-Aug 17 10:21:11 emit com.apple.launchd[1] (org.skyview.controller[4493]): Exited with code: 1
-Aug 17 10:21:11 emit com.apple.launchd[1] (org.skyview.controller): Throttling respawn: Will start in 10 seconds
+To stop the process, use
+
+    sudo launchctl unload /Library/LaunchDaemons/org.qt.controller.plist 
+
+and remove the files. (Note that you'll need to unload and reload, if you want
+to download a new program into the arduino, because otherwise the USB line will
+be blocked by this launch daemon.)
+
+
+**Diagnosing problems**
+
+If you get an error about not finding 'serial', do as follows and retry
+
+    sudo pip install pyserial
+
+Generally, use
+
+    tail -f /private/var/log/system.log
+
+to find any problems with the running of the daemon.
 

@@ -1,6 +1,10 @@
 // to test in controller, do e.g.:
 //    cat  /dev/cu.usbmodem1421
-// and it should output temperature and rel humidity repeatedly
+// and it should output temperature and rel humidity repeatedly, on a 10s interval.
+
+// Alter next line to change the default sampling interval in milliseconds,
+// e.g. 30000 means to sample twice per minute.
+#define DEFAULT_SAMPLING_INTERVAL 30000
 #include <DHT.h>
 
 #include <Adafruit_Sensor.h>
@@ -16,7 +20,8 @@ int pinLED = 13;
 
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
-uint32_t delayMS;
+uint32_t delaySensorMS; // typically 2000 ms
+uint32_t delayMS;   // set to 10,000 ms since we don't need really rapid data flow
 
 void setup() {
     Serial.begin(9600); 
@@ -24,35 +29,30 @@ void setup() {
     sensor_t sensor;
     //dht.temperature().getSensor(&sensor);
     dht.temperature().getSensor(&sensor);
-    delayMS = sensor.min_delay / 1000;
-    //Serial.print("delayMS ");
-    //Serial.println(delayMS);
+    delaySensorMS = sensor.min_delay / 1000;
+    // for DHT22 delayMS will be 2000 (milliseconds)
+    if (delaySensorMS < DEFAULT_SAMPLING_INTERVAL)
+        delayMS = DEFAULT_SAMPLING_INTERVAL;
+    else
+        delayMS = delaySensorMS;
+    // Serial.print("delaySensorMS ");
+    // Serial.println(delaySensorMS);
+    // Serial.print("delayMS ");
+    // Serial.println(delayMS);
 }
 
 void loop() {
-    int SAMPLES = 10; // do some averaging and slow things down a bit
-    int nt = 0, nq = 0;
-    float t = 0.0, q = 0.0;
-    for (int i = 0; i < SAMPLES; i++) {
-        digitalWrite(pinLED, HIGH);
-        delay(delayMS);
-        digitalWrite(pinLED, LOW);
-        sensors_event_t event;  
-        dht.temperature().getEvent(&event);
-        if (!isnan(event.temperature)) {
-            t += event.temperature;
-            nt += 1;
-        }
-        dht.humidity().getEvent(&event);
-        if (!isnan(event.relative_humidity)) {
-            q += event.relative_humidity;
-            nq += 1;
-        }
-    }
-    if (nt > 0) t /= nt;
-    else t = -999.0;
-    if (nq > 0) q /= nq;
-    else q = -999.0;
+    float t = -999.0, q = -999.0;
+    digitalWrite(pinLED, HIGH);
+    delay(delayMS);
+    digitalWrite(pinLED, LOW);
+    sensors_event_t event;  
+    dht.temperature().getEvent(&event);
+    if (!isnan(event.relative_humidity))
+        t = event.temperature;
+    dht.humidity().getEvent(&event);
+    if (!isnan(event.relative_humidity)) 
+        q = event.relative_humidity;
     Serial.print(t);
     Serial.print(" ");
     Serial.println(q);

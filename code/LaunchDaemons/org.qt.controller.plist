@@ -15,8 +15,7 @@
             <string>-v</string>
             <string>/Users/kelley/qt/code/LaunchDaemons/qt_controller.py</string>
             <string>1</string>
-            <string>10</string>
-            <string>60</string>
+            <string>6</string>
             <string>/dev/cu.usbmodem1421</string>
         </array>
         <key>KeepAlive</key>

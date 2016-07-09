@@ -8,6 +8,7 @@ plot the results. Note that (b) and (c) are run by daemons.
 ## Directories and files contained here
 
 * DHT_Unified_Sensor/ -- code found online; it demonstrates broader usage
+* LaunchDaemons/ -- holds launch daemons (OSX style) and code they run
 * README.md -- this file
 * arduino_controller/ -- arduino code to be uploaded to the arduino micro-controller
 * database/ -- has .sql code and a Makefile to create an sqlite database named qt.db

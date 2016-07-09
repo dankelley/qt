@@ -12,6 +12,7 @@ create:
 	sqlite3 qt.db < create-db.sql
 	sqlite3 qt.db < add-station.sql
 	sqlite3 qt.db ".dump"
+	mv qt.db ../../database
 
 clean:
 	-rm qt.db *~

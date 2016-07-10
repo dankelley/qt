@@ -1,17 +1,16 @@
-// to test in controller, do e.g.:
-//    cat  /dev/cu.usbmodem1421
-// and it should output temperature and rel humidity repeatedly, on a 10s interval.
+// Replies with T and q, when prompted with '>'
 
 // Alter next line to change the default sampling interval in milliseconds,
 // e.g. 30000 means to sample twice per minute.
 #define DEFAULT_SAMPLING_INTERVAL 30000
+
 #include <DHT.h>
 
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
 
-int pinLED = 13;
+int LEDPIN = 13;
 #define DHTPIN            5         // Pin which is connected to the DHT sensor.
 
 //#define DHTTYPE           DHT11     // DHT 11 
@@ -39,13 +38,15 @@ void setup() {
     // Serial.println(delaySensorMS);
     // Serial.print("delayMS ");
     // Serial.println(delayMS);
+    //Serial.println("Ready");
 }
 
 void loop() {
     float t = -999.0, q = -999.0;
-    digitalWrite(pinLED, HIGH);
-    delay(delayMS);
-    digitalWrite(pinLED, LOW);
+    // Flash LED
+    digitalWrite(LEDPIN, HIGH);
+    delay(1000);
+    digitalWrite(LEDPIN, LOW);
     sensors_event_t event;  
     dht.temperature().getEvent(&event);
     if (!isnan(event.relative_humidity))
@@ -56,5 +57,6 @@ void loop() {
     Serial.print(t);
     Serial.print(" ");
     Serial.println(q);
+    delay(delayMS);
 }
 

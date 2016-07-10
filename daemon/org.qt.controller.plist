@@ -18,6 +18,12 @@
             <string>10</string>
             <string>/dev/cu.usbmodem1421</string>
         </array>
-        <true/>
+        <key>KeepAlive</key>
+        <dict>
+            <key>Crashed</key>
+            <false/>
+        </dict>
+        <key>ThrottleInterval</key>
+        <integer>60</integer>
     </dict>
 </plist>

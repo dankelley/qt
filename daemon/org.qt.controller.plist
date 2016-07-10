@@ -17,11 +17,12 @@
             <string>1</string>
             <string>10</string>
             <string>/dev/cu.usbmodem1421</string>
+            <string>/Users/kelley/qt/database/qt.db</string>
         </array>
         <key>KeepAlive</key>
         <dict>
             <key>Crashed</key>
-            <false/>
+            <true/>
         </dict>
         <key>ThrottleInterval</key>
         <integer>60</integer>

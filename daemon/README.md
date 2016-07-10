@@ -8,14 +8,17 @@ identifier for the USB port to which the Arduino is connected.
 *Step 1.* Test the code locally before doing anything else. Do that by typing
 e.g.
 
-    python qt_controller.py 1 6 /dev/tty.usbmodem1421
+    python qt_controller.py 1 6 /dev/tty.usbmodem1421 /Users/kelley/qt/database/qt.db
 
-(where your dev will be different!) and see what happens. After about few
-minutes, data will appear in the database. You can see the data by typing
+(where the last two arguments will be different for you!) and see what happens.
+After several minutes, data will appear in the database. You can see the data
+by typing
 
-    echo '.dump' | sqlite3 ../database/qt.db 
+    echo '.dump' | sqlite3 /Users/kelley/qt/database/qt.db 
 
-in a terminal. Assuming this makes sense to you, proceed to the next step.
+in a terminal, where the last token will of course need adjustment for your
+setup. If this does not work, you must find out why, before going on to the
+next step.
 
 *Step 2.* Edit `org.qt.controller.plist` as appropriate, to name the python
 file that receives data from the Arduino and stores it in the database.  You

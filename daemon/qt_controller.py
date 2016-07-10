@@ -10,20 +10,21 @@ import sqlite3
 
 DEBUG = True
 # FIXME: database work
-if 4 != len(sys.argv):
-    print "Need 4 arguments; usage examples:"
-    print "  python " + sys.argv[0] +  " 1 10 /dev/tty.usbmodem1421   # home"
-    print "i.e. station_code=1, aggregate=10, device=/dev/tty.usbmodem1421"
+if 5 != len(sys.argv):
+    print "Need 5 arguments; usage examples:"
+    print "  python " + sys.argv[0] +  " 1 10 /dev/tty.usbmodem1421 /Users/kelley/qt/database/qt.db"
+    print "i.e. station_code=1, aggregate=10, device=/dev/tty.usbmodem1421, database=/Users/kelley/qt/database/qt.db"
     exit(2)
 station_code = atoi(sys.argv[1])
 aggregate = atoi(sys.argv[2])
 usb = sys.argv[3]
+db = sys.argv[4]
 
 
 ## Connect to database. NB: the database will need to be adjusted for other users.
-conn = sqlite3.connect("/Users/kelley/qt/database/qt.db")
+conn = sqlite3.connect(db)
 if not conn:
-    print 'cannot open database /Users/kelley/qt/database/qt.db'
+    print 'cannot open database ' + db
     exit(2)
 curr = conn.cursor()
 
@@ -56,7 +57,7 @@ t = []
 q = []
 cbuf = ""
 while (True):
-    sleep(10) # no need to check often
+    sleep(30) # no need to check often
     c = ser.read(1)
     if len(c) > 0:
         # Accumlate 'c' into 'cbuf', and process at end of line

@@ -4,7 +4,7 @@ m <- dbDriver("SQLite")
 con <- dbConnect(m, dbname="/Users/kelley/qt/database/qt.db")
 observations <- dbGetQuery(con, "select time,t,q from observations")
 ## FIXME: check timezone
-time <- numberAsPOSIXct(observations$time) - 2 * 3600
+time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))
 t <- observations$t
 q <- observations$q
 if (!interactive()) png("~/Sites/qt/plot01.png", width=7, height=3, unit="in", res=100)

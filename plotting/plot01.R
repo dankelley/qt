@@ -7,7 +7,7 @@ observations <- dbGetQuery(con, "select time,t,q from observations")
 time <- numberAsPOSIXct(observations$time) - 2 * 3600
 t <- observations$t
 q <- observations$q
-if (!interactive()) png("plot01.png", width=7, height=3, unit="in", res=100)
+if (!interactive()) png("~/Sites/qt/plot01.png", width=7, height=3, unit="in", res=100)
 nf <- layout(matrix(c(1,3,2,3), 2, 2, byrow = TRUE),widths=c(0.6,0.4),heights=c(0.5,0.5))
 # layout.show(nf)
 days <- substr(range(time),1,10)

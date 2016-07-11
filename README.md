@@ -7,5 +7,5 @@ following steps.
 
 3. *Daemon setup:* read and follow the instructions in [daemon/README.md](daemon/README.md).
 
-4. *Plotting setup:* read and follow the instructions in [plotting/README.md](plotting/README.md).
+4. *Web setup:* read and follow the instructions in [web/README.md](web/README.md).
 

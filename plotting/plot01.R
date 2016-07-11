@@ -21,6 +21,7 @@ points(time[1], q[1], col='darkgreen')
 par(mar=c(3, 3, 1, 1), mgp=c(2, 0.7, 0))
 
 plot(t,q, type="l", xlab="T [C]", ylab="q [rel]")
+points(t[1], q[1])
 
 if (!interactive()) dev.off()
 

@@ -10,6 +10,11 @@ time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))
 
 t <- observations$t
 q <- observations$q
+n <- length(t)
+timeLast <- time[n]
+midnightLast <- ISOdatetime(1900+timeLast$year, timeLast$mon+1, timeLast$mday, 0, 0, 0, tz="America/Halifax")
+recent <- time >= midnightLast
+
 if (!interactive()) png("~/Sites/qt/plot02.png", width=6.5, height=3.5, unit="in", res=100)
 par(xpd=NA)
 par(mfrow=c(1,2))
@@ -31,9 +36,9 @@ t20 <- t - t0
 x <- t20 * sin(theta)
 y <- t20 * cos(theta)
 tlim <- c(-50, 50)
-plot(x, y, asp=1, type='l', xlim=tlim, ylim=tlim, xlab="", ylab="", axes=FALSE, lwd=3,
-     col='darkred')
-points(head(x,1), head(y,1), col='darkred')
+plot(x, y, asp=1, type='l', xlim=tlim, ylim=tlim, xlab="", ylab="", axes=FALSE, lwd=1.4, col='darkred')
+lines(x[recent], y[recent], lwd=4, col='darkred')
+points(x[n], y[n], col='darkred')
 for (ring in seq(t0, 30, 10)) {
     hilite <- ring == 20
     lines((ring-t0) * circlex, (ring-t0) * circley, col=if (hilite) "black" else gridcol)
@@ -54,9 +59,9 @@ text(p, 0, "18h", cex=cex)
 x <- q * sin(theta)
 y <- q * cos(theta)
 qlim <- c(-100, 100)
-plot(x, y, asp=1, type='l', xlim=qlim, ylim=qlim, xlab="", ylab="", axes=FALSE, lwd=3,
-     col='darkgreen')
-points(head(x,1), head(y,1), col='darkgreen')
+plot(x, y, asp=1, type='l', xlim=qlim, ylim=qlim, xlab="", ylab="", axes=FALSE, lwd=1.4, col='darkgreen')
+lines(x[recent], y[recent], lwd=4, col='darkgreen')
+points(x[n], y[n], col='darkgreen')
 for (ring in seq(0, 100, 20)) {
     hilite <- ring == 60
     lines(ring * circlex, ring * circley, col=if (hilite) "black" else gridcol)

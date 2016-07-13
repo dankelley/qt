@@ -18,7 +18,7 @@ timeLast <- time[n]
 midnightLast <- ISOdatetime(1900+timeLast$year, timeLast$mon+1, timeLast$mday, 0, 0, 0, tz="America/Halifax")
 recent <- time >= midnightLast
 
-if (!interactive()) png("~/Sites/qt/plot01.png", width=7, height=3, unit="in", res=100)
+if (!interactive()) png("~/Sites/qt/plot01.png", width=7, height=4, unit="in", res=120)
 nf <- layout(matrix(c(1,4,2,4,3,4), 3, 2, byrow = TRUE),widths=c(0.6,0.4),heights=c(0.3,0.3,0.3))
 # layout.show(nf)
 days <- substr(range(time),1,10)
@@ -33,7 +33,7 @@ lines(time[recent], q[recent], col='darkgreen', lwd=4)
 points(time[n], q[n], col='darkgreen')
 
 Q <- q / equilibriumVaporPressure(t)
-oce.plot.ts(time, Q, ylab="Equil. Vap. Pres. [mbar]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=1.2)
+oce.plot.ts(time, Q, ylab="Eq. Vap. Prs. [mbar]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=1.2)
 lines(time[recent], Q[recent], col='darkgreen', lwd=4)
 points(time[n], Q[n], col='darkgreen')
 

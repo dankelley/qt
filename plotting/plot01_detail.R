@@ -21,30 +21,15 @@ t <- t[recent]
 q <- q[recent]
 time <- time[recent]
 
-if (!interactive()) png("~/Sites/qt/plot01_detail.png", width=7, height=4, unit="in", res=120)
-nf <- layout(matrix(c(1,4,2,4,3,4), 3, 2, byrow = TRUE),widths=c(0.6,0.4),heights=c(0.3,0.3,0.3))
+if (!interactive()) png("~/Sites/qt/plot01_detail.png", width=5, height=3, unit="in", res=120, pointsize=9)
+par(mfrow=c(2,1))
 # layout.show(nf)
 days <- substr(range(time),1,10)
-oce.plot.ts(time, t, ylab="T [C]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=1.2)
-lines(time[recent], t[recent], col='darkred', lwd=4)
+oce.plot.ts(time, t, ylab="T [C]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=2, grid=TRUE)
 n <- length(t)
-points(time[n], t[n], col='darkred')
-if (days[1] == days[2])
-    mtext(format(time[1], "%b %e, %Y"), side=3, adj=1, line=0, cex=0.7)
-oce.plot.ts(time, q, ylab="Rel. Hum. [%]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=1.2)
-lines(time[recent], q[recent], col='darkgreen', lwd=4)
-points(time[n], q[n], col='darkgreen')
+mtext(format(time[1], "%b %e, %Y"), side=3, adj=1, line=0, cex=0.7)
 
-Q <- q / equilibriumVaporPressure(t)
-oce.plot.ts(time, Q, ylab="Eq. Vap. Prs. [mbar]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=1.2)
-lines(time[recent], Q[recent], col='darkgreen', lwd=4)
-points(time[n], Q[n], col='darkgreen')
-
-par(mar=c(3, 3, 1, 1), mgp=c(2, 0.7, 0))
-
-plot(t,q, type="l", xlab="T [C]", ylab="Rel. Hum. [%]")
-lines(t[recent], q[recent], lwd=4)
-points(t[n], q[n])
+oce.plot.ts(time, q, ylab="Rel. Hum. [%]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=2, grid=TRUE)
 
 if (!interactive()) dev.off()
 

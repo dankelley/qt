@@ -50,7 +50,7 @@ nf <- layout(matrix(c(1,4,2,4,3,4), 3, 2, byrow = TRUE),widths=c(0.6,0.4),height
 # layout.show(nf)
 days <- substr(range(time),1,10)
 oce.plot.ts(time, t, ylab="T [C]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=1.2)
-lines(time[recent], t[recent], col='darkred', lwd=4)
+## lines(time[recent], t[recent], col='darkred', lwd=4)
 n <- length(t)
 points(time[n], t[n], col='darkred')
 if (days[1] == days[2])
@@ -58,19 +58,19 @@ if (days[1] == days[2])
 
 h <- humidex(t, q)
 oce.plot.ts(time, h, ylab="Humidex [degC]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=1.2)
-lines(time[recent], h[recent], col='darkred', lwd=4)
+##lines(time[recent], h[recent], col='darkred', lwd=4)
 points(time[n], h[n], col='darkred')
 ##mtext(" (unchecked formula)", side=3, line=-1, adj=0, col='darkred', cex=2/3)
 
 oce.plot.ts(time, q, ylab="Rel. Hum. [%]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=1.2)
-lines(time[recent], q[recent], col='darkgreen', lwd=4)
+##lines(time[recent], q[recent], col='darkgreen', lwd=4)
 points(time[n], q[n], col='darkgreen')
 
 
 par(mar=c(3, 3, 1, 1), mgp=c(2, 0.7, 0))
 
 plot(t,q, type="l", xlab="T [C]", ylab="Rel. Hum. [%]")
-lines(t[recent], q[recent], lwd=4)
+##lines(t[recent], q[recent], lwd=4)
 points(t[n], q[n])
 
 if (!interactive()) dev.off()

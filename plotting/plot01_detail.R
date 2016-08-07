@@ -57,11 +57,11 @@ mtext(format(time[1], "%b %e, %Y"), side=3, adj=1, line=0, cex=0.7)
 
 h <- humidex(t, q)
 oce.plot.ts(time, h, ylab="Humidex [degC]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=2, grid=TRUE)
-lines(time[recent], h[recent], col='darkred', lwd=4)
+##lines(time[recent], h[recent], col='darkred', lwd=4)
 points(time[n], h[n], col='darkred')
 
 oce.plot.ts(time, q, ylab="Rel. Hum. [%]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=2, grid=TRUE)
-lines(time[recent], q[recent], col='darkgreen', lwd=4)
+##lines(time[recent], q[recent], col='darkgreen', lwd=4)
 points(time[n], q[n], col='darkgreen')
 
 if (!interactive()) dev.off()

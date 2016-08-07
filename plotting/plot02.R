@@ -37,7 +37,7 @@ x <- t20 * sin(theta)
 y <- t20 * cos(theta)
 tlim <- c(-50, 50)
 plot(x, y, asp=1, type='l', xlim=tlim, ylim=tlim, xlab="", ylab="", axes=FALSE, lwd=1.4, col='darkred')
-lines(x[recent], y[recent], lwd=4, col='darkred')
+##lines(x[recent], y[recent], lwd=4, col='darkred')
 points(x[n], y[n], col='darkred')
 for (ring in seq(t0, 30, 10)) {
     hilite <- ring == 20
@@ -60,7 +60,7 @@ x <- q * sin(theta)
 y <- q * cos(theta)
 qlim <- c(-100, 100)
 plot(x, y, asp=1, type='l', xlim=qlim, ylim=qlim, xlab="", ylab="", axes=FALSE, lwd=1.4, col='darkgreen')
-lines(x[recent], y[recent], lwd=4, col='darkgreen')
+##lines(x[recent], y[recent], lwd=4, col='darkgreen')
 points(x[n], y[n], col='darkgreen')
 for (ring in seq(0, 100, 20)) {
     hilite <- ring == 60

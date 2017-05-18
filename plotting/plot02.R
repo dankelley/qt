@@ -1,5 +1,6 @@
 library(oce)
 library(RSQLite)
+N <- 10 * 86400 / 300                  # samples on 300s interval
 m <- dbDriver("SQLite")
 con <- dbConnect(m, dbname="/Users/kelley/qt/database/qt.db")
 stations <- dbGetQuery(con, "select * from stations")
@@ -7,9 +8,13 @@ observations <- dbGetQuery(con, "select time,station_code,t,q from observations"
 station <- subset(stations, station_code==observations$station_code[1])$station_name
 ## NB: timezine stored as UTC, so must convert
 time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))
-
 t <- observations$t
 q <- observations$q
+
+time <- tail(time, N)
+t <- tail(t, N)
+q <- tail(q, N)
+
 n <- length(t)
 timeLast <- time[n]
 midnightLast <- ISOdatetime(1900+timeLast$year, timeLast$mon+1, timeLast$mday, 0, 0, 0, tz="America/Halifax")

@@ -1,5 +1,6 @@
 library(oce)
 library(RSQLite)
+N <- 10 * 86400 / 300                  # samples on 300s interval
 equilibriumVaporPressure <- function(t, p=1000)
 {
     ## Buck formula
@@ -39,8 +40,13 @@ observations <- dbGetQuery(con, "select time,t,q from observations")
 ## FIXME: check timezone
 time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))
 t <- observations$t
-n <- length(t)
 q <- observations$q
+
+time <- tail(time, N)
+t <- tail(t, N)
+q <- tail(q, N)
+
+n <- length(t)
 timeLast <- time[n]
 midnightLast <- ISOdatetime(1900+timeLast$year, timeLast$mon+1, timeLast$mday, 0, 0, 0, tz="America/Halifax")
 recent <- time >= midnightLast

@@ -1,6 +1,5 @@
 library(oce)
 library(RSQLite)
-N <- 10 * 86400 / 300                  # samples on 300s interval
 equilibriumVaporPressure <- function(t, p=1000) {
     ## Buck formula
     ## https://en.wikipedia.org/wiki/Relative_humidity#Measurement
@@ -34,24 +33,23 @@ humidex <- function(t, q)
 
 
 m <- dbDriver("SQLite")
-con <- dbConnect(m, dbname="/Users/kelley/qt/database/qt.db")
+con <- dbConnect(m, dbname="/Users/kelley/git/qt/database/qt.db")
 observations <- dbGetQuery(con, "select time,t,q from observations")
 ## FIXME: check timezone
 time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))
+timel <- as.POSIXlt(time)
 t <- observations$t
 q <- observations$q
 
-time <- tail(time, N)
-t <- tail(t, N)
-q <- tail(q, N)
+latest <- timel[length(timel)]
+recent <- abs(as.numeric(time) - as.numeric(latest)) < 2 * 86400
 
-n <- length(t)
-timeLast <- time[n]
-midnightLast <- ISOdatetime(1900+timeLast$year, timeLast$mon+1, timeLast$mday, 0, 0, 0, tz="America/Halifax")
-recent <- 86400 > (as.numeric(timeLast) - as.numeric(time))
+time <- time[recent]
 t <- t[recent]
 q <- q[recent]
-time <- time[recent]
+
+n <- length(t)
+midnightLast <- ISOdatetime(1900+latest$year, latest$mon+1, latest$mday, 0, 0, 0, tz="America/Halifax")
 
 if (!interactive()) png("~/Sites/qt/plot01_detail.png", width=5, height=5, unit="in", res=120, pointsize=12)
 par(mfrow=c(3,1))
@@ -64,11 +62,11 @@ mtext(format(time[1], "%b %e, %Y"), side=3, adj=1, line=0, cex=0.7)
 h <- humidex(t, q)
 oce.plot.ts(time, h, ylab="Humidex [degC]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=2, grid=TRUE)
 ##lines(time[recent], h[recent], col='darkred', lwd=4)
-points(time[n], h[n], col='darkred')
+points(time[n], h[n], col='darkred', pch=20)
 
 oce.plot.ts(time, q, ylab="Rel. Hum. [%]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=2, grid=TRUE)
 ##lines(time[recent], q[recent], col='darkgreen', lwd=4)
-points(time[n], q[n], col='darkgreen')
+points(time[n], q[n], col='darkgreen', pch=20)
 
 if (!interactive()) dev.off()
 

@@ -1,6 +1,5 @@
 library(oce)
 library(RSQLite)
-N <- 10 * 86400 / 300                  # samples on 300s interval
 equilibriumVaporPressure <- function(t, p=1000)
 {
     ## Buck formula
@@ -35,20 +34,23 @@ humidex <- function(t, q)
 }
 
 m <- dbDriver("SQLite")
-con <- dbConnect(m, dbname="/Users/kelley/qt/database/qt.db")
+con <- dbConnect(m, dbname="/Users/kelley/git/qt/database/qt.db")
 observations <- dbGetQuery(con, "select time,t,q from observations")
 ## FIXME: check timezone
 time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))
+timel <- as.POSIXlt(time)
 t <- observations$t
 q <- observations$q
 
-time <- tail(time, N)
-t <- tail(t, N)
-q <- tail(q, N)
+latest <- timel[length(timel)]
+recent <- abs(as.numeric(time) - as.numeric(latest)) < 30 * 86400
+
+time <- time[recent]
+t <- t[recent]
+q <- q[recent]
 
 n <- length(t)
-timeLast <- time[n]
-midnightLast <- ISOdatetime(1900+timeLast$year, timeLast$mon+1, timeLast$mday, 0, 0, 0, tz="America/Halifax")
+midnightLast <- ISOdatetime(1900+latest$year, latest$mon+1, latest$mday, 0, 0, 0, tz="America/Halifax")
 recent <- time >= midnightLast
 
 if (!interactive()) png("~/Sites/qt/plot01.png", width=7, height=4, unit="in", res=120)
@@ -56,28 +58,31 @@ nf <- layout(matrix(c(1,4,2,4,3,4), 3, 2, byrow = TRUE),widths=c(0.6,0.4),height
 # layout.show(nf)
 days <- substr(range(time),1,10)
 oce.plot.ts(time, t, ylab="T [C]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=1.2)
+grid()
 ## lines(time[recent], t[recent], col='darkred', lwd=4)
 n <- length(t)
-points(time[n], t[n], col='darkred')
+points(time[n], t[n], col='darkred', pch=20)
 if (days[1] == days[2])
     mtext(format(time[1], "%b %e, %Y"), side=3, adj=1, line=0, cex=0.7)
 
 h <- humidex(t, q)
 oce.plot.ts(time, h, ylab="Humidex [degC]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkred', lwd=1.2)
+grid()
 ##lines(time[recent], h[recent], col='darkred', lwd=4)
-points(time[n], h[n], col='darkred')
+points(time[n], h[n], col='darkred', pch=20)
 ##mtext(" (unchecked formula)", side=3, line=-1, adj=0, col='darkred', cex=2/3)
 
 oce.plot.ts(time, q, ylab="Rel. Hum. [%]", drawTimeRange=FALSE, mar=c(2, 3, 1, 1), col='darkgreen', lwd=1.2)
+grid()
 ##lines(time[recent], q[recent], col='darkgreen', lwd=4)
-points(time[n], q[n], col='darkgreen')
+points(time[n], q[n], col='darkgreen', pch=20)
 
 
 par(mar=c(3, 3, 1, 1), mgp=c(2, 0.7, 0))
 
 plot(t,q, type="l", xlab="T [C]", ylab="Rel. Hum. [%]")
 ##lines(t[recent], q[recent], lwd=4)
-points(t[n], q[n])
+points(t[n], q[n], pch=20)
 
 if (!interactive()) dev.off()
 

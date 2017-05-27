@@ -13,16 +13,16 @@
         <array>
             <string>python</string>
             <string>-v</string>
-            <string>/Users/kelley/qt/daemon/qt_controller.py</string>
+            <string>/Users/kelley/git/qt/daemon/qt_controller.py</string>
             <string>1</string>
             <string>10</string>
             <string>/dev/tty.usbmodem1421</string>
-            <string>/Users/kelley/qt/database/qt.db</string>
+            <string>/Users/kelley/git/qt/database/qt.db</string>
         </array>
         <key>StandardOutPath</key>
-        <string>/Users/kelley/qt/qt.stdout.log</string>
+        <string>/Users/kelley/git/qt/qt.stdout.log</string>
         <key>StandardErrorPath</key>
-        <string>/Users/kelley/qt/qt.stderr.log</string>
+        <string>/Users/kelley/git/qt/qt.stderr.log</string>
         <key>StartInterval</key>
         <integer>300</integer>
         <key>Debug</key>

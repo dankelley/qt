@@ -8,7 +8,7 @@ identifier for the USB port to which the Arduino is connected.
 *Step 1.* Test the code locally before doing anything else. Do that by typing
 e.g.
 
-    python qt_controller.py 1 /dev/tty.usbmodem5D11 /Users/kelley/git/qt/database/qt.db
+    python qt_controller.py 1 /dev/tty.usbmodem5D11 ~/Dropbox/databases/qt.db
 
 where the last two arguments will be different for you, since both your home
 directory and (likely) your USB ports will differ.  (My home port is 1421, my
@@ -32,7 +32,7 @@ or, to upgrade, by
 Other python trouble-shooting I leave to you.  Once you have things working,
 there should be a data entry in the database. Check that by typing
 
-    echo '.dump' | sqlite3 ~/git/qt/database/qt.db 
+    echo '.dump' | sqlite3 ~/Dropbox/databases/qt.db 
 
 in a terminal. There should be an insertion into the `observations` table. That
 means that the python setup is ok.
@@ -66,7 +66,7 @@ After the daemon has been running for 10 minutes (by default), it will acquire
 a datum. So, after say 25 minutes you should have a couple of data points, and
 the output
 
-    echo '.dump' | sqlite3 ~/qt/database/qt.db | grep 'INSERT INTO "observations"'
+    echo '.dump' | sqlite3 ~/Dropbox/databases/qt.db | grep 'INSERT INTO "observations"'
 
 will display the entries.  The first few entries will be from your initial
 tests (if you did any), and after that the entries should be on regular

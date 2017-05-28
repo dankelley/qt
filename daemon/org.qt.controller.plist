@@ -16,7 +16,7 @@
             <string>/Users/kelley/git/qt/daemon/qt_controller.py</string>
             <string>1</string>
             <string>/dev/tty.usbmodem5D11</string>
-            <string>/Users/kelley/git/qt/database/qt.db</string>
+            <string>/Users/kelley/Dropbox/databases/qt.db</string>
         </array>
         <key>StartInterval</key>
         <integer>600</integer>

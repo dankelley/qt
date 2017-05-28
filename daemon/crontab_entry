@@ -17,7 +17,7 @@
             <string>1</string>
             <string>10</string>
             <string>/dev/tty.usbmodem1421</string>
-            <string>/Users/kelley/git/qt/database/qt.db</string>
+            <string>/Users/kelley/Dropbox/databases/qt.db</string>
         </array>
         <key>StandardOutPath</key>
         <string>/Users/kelley/git/qt/qt.stdout.log</string>

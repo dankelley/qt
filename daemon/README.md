@@ -10,6 +10,10 @@ e.g.
 
     python qt_controller.py 1 /dev/tty.usbmodem5D11 ~/Dropbox/databases/qt.db
 
+    # I do this, as a fuller test:
+    /usr/local/bin/python -v /Users/kelley/git/qt/daemon/qt_controller.py 1 /dev/tty.usbmodem5D11 ~/Dropbox/databases/qt.db
+
+
 where the last two arguments will be different for you, since both your home
 directory and (likely) your USB ports will differ.  (My home port is 1421, my
 work port is 5D11, as shown.)

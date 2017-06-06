@@ -12,7 +12,6 @@
         <key>ProgramArguments</key>
         <array>
             <string>/usr/local/bin/python</string>
-            <string>-v</string>
             <string>/Users/kelley/git/qt/daemon/qt_controller.py</string>
             <string>1</string>
             <string>/dev/tty.usbmodem5D11</string>

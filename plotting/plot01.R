@@ -43,7 +43,7 @@ t <- observations$t
 q <- observations$q
 
 latest <- timel[length(timel)]
-recent <- abs(as.numeric(time) - as.numeric(latest)) < 30 * 86400
+recent <- abs(as.numeric(time) - as.numeric(latest)) < 7 * 86400
 
 time <- time[recent]
 t <- t[recent]

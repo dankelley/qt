@@ -11,7 +11,7 @@ e.g.
     python qt_controller.py 1 /dev/tty.usbmodem5D11 ~/Dropbox/databases/qt.db
 
     # I do this, as a fuller test:
-    /usr/local/bin/python -v /Users/kelley/git/qt/daemon/qt_controller.py 1 /dev/tty.usbmodem5D11 ~/Dropbox/databases/qt.db
+    /usr/bin/python -v /Users/kelley/git/qt/daemon/qt_controller.py 1 /dev/tty.usbmodem5D11 ~/Dropbox/databases/qt.db
 
 
 where the last two arguments will be different for you, since both your home
@@ -29,14 +29,14 @@ you must install the `pyserial` python package, e.g. by
 
     sudo pip install pyserial
 
-or, to upgrade, by 
+or, to upgrade, by
 
     sudo pip install --upgrade pyserial
 
 Other python trouble-shooting I leave to you.  Once you have things working,
 there should be a data entry in the database. Check that by typing
 
-    echo '.dump' | sqlite3 ~/Dropbox/databases/qt.db 
+    echo '.dump' | sqlite3 ~/Dropbox/databases/qt.db
 
 in a terminal. There should be an insertion into the `observations` table. That
 means that the python setup is ok.
@@ -52,7 +52,7 @@ Arduino is connected, of course.
 
 in a terminal. Then, start the daemon with
 
-    sudo launchctl load /Library/LaunchDaemons/org.qt.controller.plist 
+    sudo launchctl load /Library/LaunchDaemons/org.qt.controller.plist
 
 to set the code up to work. After this, no action will be required (since the
 daemon will get launched at boot time, in future).
@@ -80,8 +80,7 @@ fourth is the relative humidity in percent, and the fifth and last is the
 temperature in degreeC.
 
 If you have no data, then you'll need to troubleshoot. The most likely
-candidate for problems is your python setup (which is taken to be that from
-homebrew with python in `/usr/local/lib`, in the present system).
+candidate for problems is your python setup.
 
 
 **Troubleshooting.**
@@ -91,12 +90,12 @@ homebrew with python in `/usr/local/lib`, in the present system).
 
 To stop the process, execute
 
-    sudo launchctl unload /Library/LaunchDaemons/org.qt.controller.plist 
+    sudo launchctl unload /Library/LaunchDaemons/org.qt.controller.plist
 
 in a terminal. It will still get restarted at reboot, so if you wish to remove
 the action entirely, remove that `.plist` file by executing
 
-    sudo rm /Library/LaunchDaemons/org.qt.controller.plist 
+    sudo rm /Library/LaunchDaemons/org.qt.controller.plist
 
 
 *Interrupting the daemon*

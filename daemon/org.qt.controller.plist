@@ -7,11 +7,11 @@
         <key>EnvironmentVariables</key>
         <dict>
             <key>PYTHONPATH</key>
-            <string>/usr/local/bin</string>
+            <string>/usr/bin</string>
         </dict>
         <key>ProgramArguments</key>
         <array>
-            <string>/usr/local/bin/python</string>
+            <string>/usr/bin/python</string>
             <string>/Users/kelley/git/qt/daemon/qt_controller.py</string>
             <string>1</string>
             <string>/dev/tty.usbmodem5D11</string>

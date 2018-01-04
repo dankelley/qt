@@ -33,7 +33,7 @@ humidex <- function(t, q)
 
 
 m <- dbDriver("SQLite")
-con <- dbConnect(m, dbname="/Users/kelley/databases/qt.db")
+con <- dbConnect(m, dbname="/Users/kelley/Dropbox/databases/qt.db")
 observations <- dbGetQuery(con, "select time,t,q from observations")
 ## FIXME: check timezone
 time <- as.POSIXlt(numberAsPOSIXct(observations$time, tz="America/Halifax"))

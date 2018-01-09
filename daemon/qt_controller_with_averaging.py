@@ -14,8 +14,8 @@ DEBUG = True
 # FIXME: database work
 if 5 != len(sys.argv):
     print("Need 5 arguments; usage examples:")
-    print("  python " + sys.argv[0] +  " 1 10 /dev/tty.usbmodem1421 /Users/kelley/Dropbox/databases/qt.db")
-    print("i.e. station_code=1, aggregate=10, device=/dev/tty.usbmodem1421, database=/Users/kelley/Dropbox/databases/qt.db")
+    print("  python " + sys.argv[0] +  " 1 10 /dev/tty.usbmodem1421 /Users/kelley/databases/qt.db")
+    print("i.e. station_code=1, aggregate=10, device=/dev/tty.usbmodem1421, database=/Users/kelley/databases/qt.db")
     exit(2)
 station_code = atoi(sys.argv[1])
 aggregate = atoi(sys.argv[2])

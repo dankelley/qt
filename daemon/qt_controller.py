@@ -10,7 +10,7 @@ from string import atoi, atof
 import sqlite3
 
 
-DEBUG = False
+DEBUG = not False
 # FIXME: database work
 if 4 != len(sys.argv):
     print("Need 4 arguments; usage examples:")
@@ -28,6 +28,8 @@ if not conn:
     print('cannot open database ' + db)
     exit(2)
 curr = conn.cursor()
+if DEBUG:
+    print('opened database ' + db)
 
 try:
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

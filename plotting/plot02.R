@@ -2,7 +2,7 @@ library(oce)
 library(RSQLite)
 N <- 10 * 86400 / 600                  # samples on 600s interval
 m <- dbDriver("SQLite")
-con <- dbConnect(m, dbname="/Users/kelley/Dropbox/databases/qt.db")
+con <- dbConnect(m, dbname="/Users/kelley/databases/qt.db")
 stations <- dbGetQuery(con, "select * from stations")
 observations <- dbGetQuery(con, "select time,station_code,t,q from observations")
 station <- subset(stations, station_code==observations$station_code[1])$station_name

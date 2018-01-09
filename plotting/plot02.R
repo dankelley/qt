@@ -39,26 +39,26 @@ s <- time$sec
 hour <- h + (m + s / 60) / 60
 hourRadians <- hour * 2 * pi / 24
 theta <- hourRadians - pi
-t0 <- -20
-t20 <- t - t0
-x <- t20 * sin(theta)
-y <- t20 * cos(theta)
-tlim <- c(-50, 50)
+t0 <- 10
+tt <- t - t0
+x <- tt * sin(theta)
+y <- tt * cos(theta)
+tlim <- c(-30, 30)
 plot(x, y, asp=1, type='l', xlim=tlim, ylim=tlim, xlab="", ylab="", axes=FALSE, lwd=1.4, col='darkred')
 ##lines(x[recent], y[recent], lwd=4, col='darkred')
 points(x[n], y[n], col='darkred', pch=20)
-for (ring in seq(t0, 30, 10)) {
-    hilite <- ring == 20
+for (ring in seq(t0, 40, 5)) {
+    hilite <- ring == 25
     lines((ring-t0) * circlex, (ring-t0) * circley, col=if (hilite) "black" else gridcol)
 }
-p <- 50
+p <- 30
 lines(c(0, 0), c(-p, p), col=gridcol)
 lines(c(-p, p), c(0, 0), col=gridcol)
-#for (ring in pretty(c(t20, 0))) {
+#for (ring in pretty(c(tt, 0))) {
 mtext("Temperature", side=3, line=0, cex=cex, adj=0, font=2)
-mtext(expression("10"*degree*C*" contours,"), side=3, line=-1, cex=cex, adj=0)
-mtext(expression("20"*degree*"C bold"), side=3, line=-1.75, cex=cex, adj=0)
-p <- 55
+mtext(expression("5"*degree*C*" contours,"), side=3, line=-1, cex=cex, adj=0)
+mtext(expression("25"*degree*"C bold"), side=3, line=-1.75, cex=cex, adj=0)
+p <- 33
 text(0, -p, "0h", cex=cex)
 text(-p, 0, "6h", cex=cex)
 text(0, p, "12h", cex=cex)

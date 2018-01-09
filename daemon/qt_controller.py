@@ -10,7 +10,7 @@ from string import atoi, atof
 import sqlite3
 
 
-DEBUG = not False
+DEBUG = False
 # FIXME: database work
 if 4 != len(sys.argv):
     print("Need 4 arguments; usage examples:")
